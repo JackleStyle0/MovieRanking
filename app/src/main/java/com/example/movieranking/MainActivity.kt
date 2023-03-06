@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             val username = binding.usernameTextField.text.toString()
             if (username.isNotEmpty()) {
-                val intent = Intent().apply {
+                val intent = Intent(this, MovieDetailActivity::class.java).apply {
                     putExtra("username", username)
                 }
                 startActivity(intent)
