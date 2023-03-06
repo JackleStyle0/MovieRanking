@@ -15,7 +15,11 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val username = intent.getStringExtra("username")
-        binding.usernameTv.text = "Hello $username"
+        val username = intent.getStringExtra("username") ?: "User"
+        val fragment = MovieDetailFragment.newInstance(username)
+
+        supportFragmentManager.beginTransaction()
+            .replace(binding.container.id, fragment)
+            .commit()
     }
 }
