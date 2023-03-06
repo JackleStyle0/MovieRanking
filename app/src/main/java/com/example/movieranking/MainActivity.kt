@@ -1,6 +1,5 @@
 package com.example.movieranking
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movieranking.databinding.ActivityMainBinding
@@ -14,6 +13,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
     }
 }

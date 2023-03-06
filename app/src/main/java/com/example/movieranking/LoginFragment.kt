@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.NavHost
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.movieranking.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -27,10 +31,8 @@ class LoginFragment : Fragment() {
         binding.button.setOnClickListener {
             val username = binding.usernameTextField.text.toString()
             if (username.isNotEmpty()) {
-                val intent = Intent(requireContext(), MovieDetailActivity::class.java).apply {
-                    putExtra("username", username)
-                }
-                startActivity(intent)
+                val bundle = bundleOf("username" to username)
+                findNavController().navigate(R.id.action_loginFragment_to_movieDetailFragment, bundle)
             }
         }
     }
