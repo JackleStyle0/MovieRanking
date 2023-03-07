@@ -32,7 +32,7 @@ class LoginFragment : Fragment() {
             val username = binding.usernameTextField.text.toString()
             if (username.isNotEmpty()) {
                 val bundle = bundleOf("username" to username)
-                findNavController().navigate(R.id.action_loginFragment_to_movieDetailFragment, bundle)
+                findNavController().navigate(R.id.action_loginFragment_to_homeMovieFragment, bundle)
             }
         }
     }

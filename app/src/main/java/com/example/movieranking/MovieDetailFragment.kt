@@ -24,7 +24,15 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val username = arguments?.getString("username", "")
+        val movie = arguments?.getParcelable("movie") as? Movie
         binding.usernameTv.text = "Hello $username"
+        movie?.let {
+            binding.titleTv.text = movie.title
+            binding.yearTv.text = movie.year
+            binding.cashupTv.text = movie.cashup
+            binding.detailTv.text = movie.detail
+            binding.rankTv.text = movie.rank
+        }
     }
 
     companion object {
