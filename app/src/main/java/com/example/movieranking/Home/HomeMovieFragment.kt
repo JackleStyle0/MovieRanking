@@ -10,7 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.movieranking.MovieAdapter
 import com.example.movieranking.R
+import com.example.movieranking.data.MovieFactoryAPI
 import com.example.movieranking.databinding.FragmentHomeMovieBinding
+import kotlinx.coroutines.Dispatchers
+import okhttp3.internal.notifyAll
 
 class HomeMovieFragment : Fragment() {
 
@@ -43,7 +46,10 @@ class HomeMovieFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         viewModel.movieListLiveData.observe(viewLifecycleOwner) {
             adapter.list = it
+            adapter.notifyDataSetChanged()
         }
+
+        viewModel.fetchMovieList(MovieFactoryAPI.createAPI())
     }
 
     companion object {

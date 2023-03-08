@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,8 @@ class LoginFragment : Fragment() {
     private val binding: FragmentLoginBinding by lazy {
         FragmentLoginBinding.inflate(layoutInflater)
     }
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +34,13 @@ class LoginFragment : Fragment() {
         binding.button.setOnClickListener {
             val username = binding.usernameTextField.text.toString()
             if (username.isNotEmpty()) {
-                val bundle = bundleOf("username" to username)
-                findNavController().navigate(R.id.action_loginFragment_to_homeMovieFragment, bundle)
+                viewModel.validateUsername(username)
             }
+        }
+
+        viewModel.navigateToHome.observe(viewLifecycleOwner) {
+            val bundle = bundleOf("username" to it)
+            findNavController().navigate(R.id.action_loginFragment_to_homeMovieFragment, bundle)
         }
     }
 

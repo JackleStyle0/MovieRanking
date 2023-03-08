@@ -35,7 +35,7 @@ class MovieDetailFragment : Fragment() {
             binding.detailTv.text = movie.detail
             binding.rankTv.text = movie.rank.toString()
             Glide.with(binding.imageView)
-                .load(movie.url)
+                .load(movie.posterUrl)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(binding.imageView)
         }

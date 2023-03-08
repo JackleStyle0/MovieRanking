@@ -32,7 +32,7 @@ class MovieViewHolder(val binding: ItemMovieBinding) :
         binding.cashupTv.text = movie.cashup
         binding.yearTv.text = movie.year
         Glide.with(binding.imageView)
-            .load(movie.url)
+            .load(movie.posterUrl)
             .placeholder(R.drawable.ic_launcher_background)
             .into(binding.imageView)
     }
