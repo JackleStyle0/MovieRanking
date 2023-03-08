@@ -10,5 +10,5 @@ data class Movie(
     val cashup: String,
     val detail: String,
     val url: String,
-    val rank: String
+    val rank: Int
 ): Parcelable
