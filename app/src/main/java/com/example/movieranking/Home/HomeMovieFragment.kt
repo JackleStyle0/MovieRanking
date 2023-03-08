@@ -1,4 +1,4 @@
-package com.example.movieranking
+package com.example.movieranking.Home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.movieranking.MovieAdapter
+import com.example.movieranking.R
 import com.example.movieranking.databinding.FragmentHomeMovieBinding
 
 class HomeMovieFragment : Fragment() {

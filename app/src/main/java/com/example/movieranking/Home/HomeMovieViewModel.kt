@@ -1,8 +1,9 @@
-package com.example.movieranking
+package com.example.movieranking.Home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.movieranking.data.Movie
 
 class HomeMovieViewModel : ViewModel() {
 
