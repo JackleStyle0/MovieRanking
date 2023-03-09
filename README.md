@@ -33,7 +33,8 @@
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion"
     
  ### mock data
-  ```kotlin private fun createMockData(): List<Movie> {
+  ```kotlin 
+private fun createMockData(): List<Movie> {
         return listOf(
             Movie(
                 "Avatar",
