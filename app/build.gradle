@@ -74,6 +74,7 @@ dependencies {
     def mockkVersion = "1.13.4"
     testImplementation "io.mockk:mockk-android:${mockkVersion}"
     testImplementation "io.mockk:mockk-agent:${mockkVersion}"
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
 
     //Coroutines
     def coroutineVersion = "1.6.4"

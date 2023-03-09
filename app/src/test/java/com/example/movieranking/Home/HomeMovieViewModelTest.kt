@@ -1,5 +1,6 @@
 package com.example.movieranking.Home
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.movieranking.data.Movie
 import com.example.movieranking.data.MovieAPI
@@ -10,10 +11,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
+import org.junit.*
+import org.junit.rules.TestRule
 import retrofit2.Response
 
 @ExperimentalCoroutinesApi
@@ -21,11 +20,20 @@ class HomeMovieViewModelTest {
 
     private lateinit var viewModel: HomeMovieViewModel
 
+    @get:Rule
+    var rule: TestRule = InstantTaskExecutorRule()
+
+    @MockK
+    private lateinit var movieListObserver: Observer<List<Movie>>
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
         viewModel = HomeMovieViewModel()
         Dispatchers.setMain(Dispatchers.Unconfined)
+
+        every { movieListObserver.onChanged(any()) } answers {}
+        viewModel.movieListLiveData.observeForever(movieListObserver)
     }
 
     @After
@@ -39,10 +47,14 @@ class HomeMovieViewModelTest {
         val api = mockkClass(MovieAPI::class)
         coEvery { api.getMovies() } returns Response.success(createMockData())
 
+
         // When
         viewModel.fetchMovieList(api)
 
         // Then
+        verify {
+            movieListObserver.onChanged(createMockData())
+        }
         Assert.assertEquals(10, viewModel.movieListLiveData.value?.size)
     }
 
